@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Textures/default profile.webp" type="Texture" id=1]
+[ext_resource path="res://Fonts/Designer.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=5]
+size = 44
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+
+[node name="Player_name" type="Button"]
+margin_right = 500.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 500, 100 )
+custom_fonts/font = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+text = "Player 1"
+icon = ExtResource( 1 )
+expand_icon = true

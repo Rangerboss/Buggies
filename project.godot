@@ -11,7 +11,18 @@ config_version=4
 [application]
 
 config/name="Synax error 2024 main"
+run/main_scene="res://Lobby.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Network="*res://Network.gd"
+PlayerData="*res://Player_data.gd"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
 
 [gui]
 
@@ -23,4 +34,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/default_clear_color=Color( 0.329412, 0.329412, 0.329412, 1 )
 environment/default_environment="res://default_env.tres"
