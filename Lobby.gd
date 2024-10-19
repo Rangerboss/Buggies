@@ -5,10 +5,11 @@ onready var p_list = get_node("Players_list_display")
 
 var player_tile = preload("res://Lobby scene/Player_name.tscn")
 
-var level_paths = []
+var level_paths = ["res://Levels/level1/Forest_Level.tscn"]
 
 remote func save_game_data(arr):
 	PlayerData.players_data[arr[0]]=[arr[1],arr[2],arr[3],arr[4]]
+	
 #	print(PlayerData.players_data)
 
 
@@ -31,7 +32,7 @@ remote func display_name(arr):
 #		a.name = arr[0]
 		a.text = arr[1]
 		p_list.add_child(a)
-	print(arr)
+#	print(arr)
 
 
 func update_user_list():
