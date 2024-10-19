@@ -1,11 +1,13 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Levels/level1/model/Forest_Level.glb" type="PackedScene" id=1]
 [ext_resource path="res://addons/kenney_particle_pack/smoke_07.png" type="Texture" id=2]
 [ext_resource path="res://Levels/level1/model/trees.material" type="Material" id=3]
 [ext_resource path="res://HDRI/clouds.png" type="Texture" id=4]
-[ext_resource path="res://Levels/level1/Level.gd" type="Script" id=5]
+[ext_resource path="res://Levels/level1/main.gd" type="Script" id=5]
 [ext_resource path="res://Camera_holder.gd" type="Script" id=6]
+[ext_resource path="res://Levels/level1/Power_up_spawn.gd" type="Script" id=7]
+[ext_resource path="res://Levels/level1/Water_area.gd" type="Script" id=8]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 74.9392, 1, 74.8089 )
@@ -374,6 +376,18 @@ angle_random = 0.56
 scale = 2.79
 scale_random = 0.64
 
+[sub_resource type="CylinderShape" id=21]
+radius = 6.5763
+
+[sub_resource type="CylinderShape" id=22]
+radius = 13.8363
+
+[sub_resource type="CylinderShape" id=23]
+radius = 5.6657
+
+[sub_resource type="CylinderShape" id=24]
+radius = 12.2627
+
 [node name="main" instance=ExtResource( 1 )]
 script = ExtResource( 5 )
 
@@ -512,6 +526,189 @@ transform = Transform( 0.977725, 0, 0.209892, 0, 1, 0, -0.209892, 0, 0.977725, -
 script = ExtResource( 6 )
 
 [node name="Camera" type="Camera" parent="Camera_holder" index="0"]
-transform = Transform( 0.57857, -0.477226, 0.661447, 0, 0.810962, 0.585099, -0.815633, -0.338521, 0.469198, 81.8477, 67.2251, 72.815 )
+transform = Transform( 1, 0, 0, 0, 0.858208, 0.513302, 0, -0.513302, 0.858208, -8.02269, 76.935, 64.9038 )
 current = true
 far = 1000.0
+
+[node name="Power_ups" type="Spatial" parent="." index="21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.3168, 0 )
+
+[node name="Power_up_spawn" type="Spatial" parent="Power_ups" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -63.525, 0, 25.0935 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Power_up_spawn2" type="Spatial" parent="Power_ups" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -61.7164, 0, -0.6782 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn2" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Power_up_spawn3" type="Spatial" parent="Power_ups" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -59.0036, 0, -27.5802 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn3" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Power_up_spawn4" type="Spatial" parent="Power_ups" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -55.8387, 0, -58.0994 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn4" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Power_up_spawn5" type="Spatial" parent="Power_ups" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71283, 0, -48.1524 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn5" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Power_up_spawn6" type="Spatial" parent="Power_ups" index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.48677, 0, -62.3946 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn6" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Power_up_spawn7" type="Spatial" parent="Power_ups" index="6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.7003, 0, -18.9897 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn7" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Power_up_spawn8" type="Spatial" parent="Power_ups" index="7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 49.961, 0, 4.97349 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn8" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Power_up_spawn9" type="Spatial" parent="Power_ups" index="8"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 61.9425, 0, 37.7533 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn9" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Power_up_spawn10" type="Spatial" parent="Power_ups" index="9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37.3012, 0, 21.7025 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn10" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Power_up_spawn11" type="Spatial" parent="Power_ups" index="10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 56.9691, 0, -64.4293 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn11" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Power_up_spawn12" type="Spatial" parent="Power_ups" index="11"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 68.0464, 0, -59.0036 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn12" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Power_up_spawn13" type="Spatial" parent="Power_ups" index="12"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.52133, 0, 63.2989 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn13" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Power_up_spawn14" type="Spatial" parent="Power_ups" index="13"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3461, 0, 3.16494 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Power_ups/Power_up_spawn14" index="0"]
+wait_time = 7.0
+autostart = true
+
+[node name="Water_area" type="Area" parent="." index="22"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 27.7375, 0 )
+space_override = 3
+linear_damp = 1.148
+angular_damp = 0.169
+script = ExtResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Water_area" index="0"]
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 10.5261, 0, 26.703 )
+shape = SubResource( 21 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Water_area" index="1"]
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 28.6203, 0, 21.5651 )
+shape = SubResource( 22 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Water_area" index="2"]
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 44.2719, 0, 18.374 )
+shape = SubResource( 22 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="Water_area" index="3"]
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 47.387, 0, 28.935 )
+shape = SubResource( 22 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="Water_area" index="4"]
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, -63.8267, 0, 1.54166 )
+shape = SubResource( 22 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="Water_area" index="5"]
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, -65.7955, 0, -37.1319 )
+shape = SubResource( 22 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="Water_area" index="6"]
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, -14.3246, 0, -24.6157 )
+shape = SubResource( 23 )
+
+[node name="CollisionShape8" type="CollisionShape" parent="Water_area" index="7"]
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 34.7468, 0, -50.8997 )
+shape = SubResource( 24 )
+
+[node name="CollisionShape9" type="CollisionShape" parent="Water_area" index="8"]
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 50.0723, 0, -68.7075 )
+shape = SubResource( 24 )
+
+[node name="CollisionShape10" type="CollisionShape" parent="Water_area" index="9"]
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 67.004, 0, -62.0409 )
+shape = SubResource( 24 )
+
+[node name="CollisionShape11" type="CollisionShape" parent="Water_area" index="10"]
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 71.2202, 0, -46.3056 )
+shape = SubResource( 24 )
+
+[connection signal="timeout" from="Power_ups/Power_up_spawn/Timer" to="Power_ups/Power_up_spawn" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Power_ups/Power_up_spawn2/Timer" to="Power_ups/Power_up_spawn2" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Power_ups/Power_up_spawn3/Timer" to="Power_ups/Power_up_spawn3" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Power_ups/Power_up_spawn4/Timer" to="Power_ups/Power_up_spawn4" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Power_ups/Power_up_spawn5/Timer" to="Power_ups/Power_up_spawn5" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Power_ups/Power_up_spawn6/Timer" to="Power_ups/Power_up_spawn6" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Power_ups/Power_up_spawn7/Timer" to="Power_ups/Power_up_spawn7" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Power_ups/Power_up_spawn8/Timer" to="Power_ups/Power_up_spawn8" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Power_ups/Power_up_spawn9/Timer" to="Power_ups/Power_up_spawn9" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Power_ups/Power_up_spawn10/Timer" to="Power_ups/Power_up_spawn10" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Power_ups/Power_up_spawn11/Timer" to="Power_ups/Power_up_spawn11" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Power_ups/Power_up_spawn12/Timer" to="Power_ups/Power_up_spawn12" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Power_ups/Power_up_spawn13/Timer" to="Power_ups/Power_up_spawn13" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Power_ups/Power_up_spawn14/Timer" to="Power_ups/Power_up_spawn14" method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Water_area" to="Water_area" method="_on_Water_area_body_entered"]
+[connection signal="body_exited" from="Water_area" to="Water_area" method="_on_Water_area_body_exited"]

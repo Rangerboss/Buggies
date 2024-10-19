@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Power_up_area.gd" type="Script" id=2]
+[ext_resource path="res://Power_up.gd" type="Script" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+params_billboard_mode = 1
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 0.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="QuadMesh" id=2]
+size = Vector2( 6, 6 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Glow"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Icon:material_override:emission_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.14, 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Icon:material_override:emission_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 0.434196, 0.54012, 0.432053 )
+
+[node name="Power_up" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="Icon" type="MeshInstance" parent="."]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Glow"
+anims/Glow = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+
+[node name="Power_up_area" type="Area" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Power_up_area"]
+shape = SubResource( 5 )
+
+[connection signal="body_entered" from="Power_up_area" to="Power_up_area" method="_on_Power_up_area_body_entered"]

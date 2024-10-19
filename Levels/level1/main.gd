@@ -9,15 +9,17 @@ remote func save_game_data(arr):
 var spawns = []
 
 func _ready():
-	for i in spawners.get_child_count():
-		spawns.append("Spawner"+str(i+1))
-	for id in PlayerData.players.keys():
-		var new_car = car_scene.instance()
-		new_car.name = str(id)
-		spawns.shuffle()
-		spawners.get_node(spawns[0]).add_child(new_car)
-		spawns.pop_front()
-		
+	if spawners.get_child_count() !=0:
+		for i in spawners.get_child_count():
+			spawns.append("Spawner"+str(i+1))
+		for id in PlayerData.players.keys():
+			var new_car = car_scene.instance()
+			new_car.name = str(id)
+			spawns.shuffle()
+			spawners.get_node(spawns[0]).add_child(new_car)
+			spawns.pop_at(0)
+			randomize()
+	get_node("Camera_holder").make_list()
 func _physics_process(delta):
 	
 #	for player_id in PlayerData.players_data.keys():

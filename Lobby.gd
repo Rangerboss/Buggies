@@ -28,10 +28,12 @@ func _ready() -> void:
 remote func display_name(arr):
 	PlayerData.players[arr[0]] = arr[1]
 	for player in PlayerData.players:
-		var a = player_tile.instance()
-#		a.name = arr[0]
-		a.text = arr[1]
-		p_list.add_child(a)
+		if get_node("Players_list_display").get_node_or_null(str(arr[0])) == null:
+			var a = player_tile.instance()
+	#		a.name = arr[0]
+			a.text = arr[1]
+			a.name = str(arr[0])
+			p_list.add_child(a)
 #	print(arr)
 
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/ballastic_missile-removebg-preview.png-9af036ae525efa30d5ee0294e69e64b8.s3tc.stex"
-path.etc2="res://.import/ballastic_missile-removebg-preview.png-9af036ae525efa30d5ee0294e69e64b8.etc2.stex"
+path.s3tc="res://.import/ballastic_missile-removebg-preview.png-90c1e39d5102dedea7b90a1d2131b564.s3tc.stex"
+path.etc2="res://.import/ballastic_missile-removebg-preview.png-90c1e39d5102dedea7b90a1d2131b564.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/ballastic_missile-removebg-preview.png"
-dest_files=[ "res://.import/ballastic_missile-removebg-preview.png-9af036ae525efa30d5ee0294e69e64b8.s3tc.stex", "res://.import/ballastic_missile-removebg-preview.png-9af036ae525efa30d5ee0294e69e64b8.etc2.stex" ]
+source_file="res://Textures/Power_ups/ballastic_missile-removebg-preview.png"
+dest_files=[ "res://.import/ballastic_missile-removebg-preview.png-90c1e39d5102dedea7b90a1d2131b564.s3tc.stex", "res://.import/ballastic_missile-removebg-preview.png-90c1e39d5102dedea7b90a1d2131b564.etc2.stex" ]
 
 [params]
 

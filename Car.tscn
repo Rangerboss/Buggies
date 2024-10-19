@@ -1,10 +1,14 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Cars/Exterior.material" type="Material" id=1]
 [ext_resource path="res://Cars/Wheel.material" type="Material" id=2]
 [ext_resource path="res://Cars/Window.material" type="Material" id=3]
 [ext_resource path="res://Cars/Interior.material" type="Material" id=4]
 [ext_resource path="res://Car.gd" type="Script" id=5]
+[ext_resource path="res://Fonts/Designer.otf" type="DynamicFontData" id=6]
+[ext_resource path="res://models/missile.glb" type="PackedScene" id=7]
+[ext_resource path="res://models/missile_bullet.glb" type="PackedScene" id=8]
+[ext_resource path="res://models/missile_bullet.gd" type="Script" id=9]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "syntax car_Circle002_Exterior_0"
@@ -52,7 +56,7 @@ surfaces/0 = {
 }
 
 [sub_resource type="BoxShape" id=2]
-extents = Vector3( 12.6104, 8.57713, 20.8392 )
+extents = Vector3( 10.9584, 8.57713, 18.9745 )
 
 [sub_resource type="ArrayMesh" id=3]
 resource_name = "syntax car_Circle_Wheel_0"
@@ -207,9 +211,58 @@ surfaces/0 = {
 "vertex_count": 190
 }
 
+[sub_resource type="BoxShape" id=16]
+extents = Vector3( 1.55357, 0.753139, 0.587177 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 68
+font_data = ExtResource( 6 )
+
+[sub_resource type="SpatialMaterial" id=18]
+params_billboard_mode = 1
+albedo_color = Color( 0.588235, 0.0627451, 0.752941, 1 )
+
+[sub_resource type="QuadMesh" id=19]
+size = Vector2( 2.274, 0.225 )
+
+[sub_resource type="BoxShape" id=20]
+extents = Vector3( 1.88827, 0.606107, 0.66092 )
+
+[sub_resource type="SpatialMaterial" id=21]
+flags_vertex_lighting = true
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Curve" id=22]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.515909 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=23]
+curve = SubResource( 22 )
+
+[sub_resource type="ParticlesMaterial" id=24]
+emission_shape = 1
+emission_sphere_radius = 0.65
+gravity = Vector3( 5, 0, 0 )
+scale = 0.19
+scale_random = 0.57
+scale_curve = SubResource( 23 )
+
+[sub_resource type="SphereMesh" id=25]
+
+[sub_resource type="SpatialMaterial" id=26]
+albedo_color = Color( 0.0509804, 0.843137, 0.905882, 1 )
+
+[sub_resource type="ParticlesMaterial" id=27]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+direction = Vector3( 0, 1, 0 )
+gravity = Vector3( 0, -4, 0 )
+initial_velocity = 4.07
+scale = 0.26
+
+[sub_resource type="SphereMesh" id=28]
+
 [node name="Car" type="VehicleBody"]
 script = ExtResource( 5 )
-MAX_ENGINE_FORCE = 400.0
 MAX_BRAKE_FORCE = 15.0
 
 [node name="body" type="MeshInstance" parent="."]
@@ -225,7 +278,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.97213, 0 )
 mesh = SubResource( 15 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.116443, 0 )
 shape = SubResource( 2 )
 
 [node name="fl" type="VehicleWheel" parent="."]
@@ -311,3 +364,63 @@ shape = SubResource( 9 )
 [node name="Frunk" type="MeshInstance" parent="Frunk"]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 mesh = SubResource( 13 )
+
+[node name="Damage area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Damage area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0719578, -1.84724 )
+shape = SubResource( 16 )
+
+[node name="Name_tag" type="Label3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00883, 0 )
+billboard = 1
+double_sided = false
+no_depth_test = true
+text = "NAME"
+font = SubResource( 17 )
+
+[node name="Health_bar" type="MeshInstance" parent="Name_tag"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.496189, 0 )
+material_override = SubResource( 18 )
+mesh = SubResource( 19 )
+
+[node name="Rage_timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="missile" parent="." instance=ExtResource( 7 )]
+transform = Transform( -2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0, 1.19788, 0.236 )
+visible = false
+
+[node name="missile_bullet" parent="missile" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, -5.11042, 0, -5.68434e-14 )
+visible = false
+script = ExtResource( 9 )
+
+[node name="Area" type="Area" parent="missile/missile_bullet"]
+
+[node name="CollisionShape" type="CollisionShape" parent="missile/missile_bullet/Area"]
+shape = SubResource( 20 )
+
+[node name="Particles" type="Particles" parent="missile/missile_bullet"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44698, 0, -4.26326e-14 )
+material_override = SubResource( 21 )
+amount = 50
+process_material = SubResource( 24 )
+draw_pass_1 = SubResource( 25 )
+
+[node name="Strength_timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Water_splash" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.902036, 0.431661, 0, -0.431661, 0.902036, 0, -0.182099, -0.891546 )
+material_override = SubResource( 26 )
+emitting = false
+process_material = SubResource( 27 )
+draw_pass_1 = SubResource( 28 )
+
+[connection signal="body_entered" from="Damage area" to="." method="_on_Damage_area_body_entered"]
+[connection signal="timeout" from="Rage_timer" to="." method="_on_Rage_timer_timeout"]
+[connection signal="body_entered" from="missile/missile_bullet/Area" to="missile/missile_bullet" method="_on_Area_body_entered"]
+[connection signal="timeout" from="Strength_timer" to="." method="_on_Strength_timer_timeout"]

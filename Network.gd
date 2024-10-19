@@ -43,7 +43,7 @@ func server_disconnected():
 
 func create_server():
 	var server : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
-	server.create_server(9999,6)
+	server.create_server(9999,4)
 	get_tree().set_network_peer(server)
 
 #
